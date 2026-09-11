@@ -1,0 +1,50 @@
+{% extends 'blog/base.html' %}
+{% block title %}Feed - DevBlog{% endblock %}
+
+{% block content %}
+<div class="d-flex align-items-center justify-content-between mb-5">
+    <div>
+        <h1 class="fw-bold mb-1" style="font-size: 2.5rem; letter-spacing: -1px;">Explore</h1>
+        <p class="text-muted fw-medium">Read the latest insights from the community.</p>
+    </div>
+</div>
+
+<div class="row g-4">
+    {% for post in posts %}
+        <div class="col-12" style="animation-delay: {{ forloop.counter0|add:1 }}00ms;">
+            <div class="glass-card p-4 p-md-5">
+                <div class="d-flex align-items-center mb-4">
+                    <!-- Dynamic Avatar -->
+                    <img src="https://ui-avatars.com/api/?name={{ post.author.username }}&background=random&color=fff&bold=true" class="rounded-circle shadow-sm me-3" width="45" height="45" alt="Avatar">
+                    <div>
+                        <h6 class="mb-0 fw-bold text-dark">{{ post.author.username }}</h6>
+                        <span class="text-muted small fw-medium">{{ post.created_at|date:"M d, Y" }}</span>
+                    </div>
+                </div>
+                
+                <h2 class="fw-bold mb-3" style="letter-spacing: -0.5px;">
+                    <a href="{% url 'post_detail' post.pk %}" class="text-dark text-decoration-none stretched-link">
+                        {{ post.title }}
+                    </a>
+                </h2>
+                <p class="text-secondary fs-6 mb-4" style="line-height: 1.7;">{{ post.content|truncatewords:35 }}</p>
+                
+                <div class="d-flex align-items-center">
+                    <span class="text-primary fw-bold small text-uppercase tracking-wider">
+                        Read Article <i class="bi bi-arrow-right ms-1"></i>
+                    </span>
+                    <span class="ms-auto text-muted small fw-medium">
+                        <i class="bi bi-chat-fill me-1"></i> {{ post.comments.count }}
+                    </span>
+                </div>
+            </div>
+        </div>
+    {% empty %}
+        <div class="text-center py-5 glass-card">
+            <h3 class="fw-bold text-dark">It's quiet here...</h3>
+            <p class="text-muted mb-4">Be the first to publish an article on the platform.</p>
+            <a href="{% url 'post_create' %}" class="btn btn-gradient px-4 py-2">Start Writing</a>
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}
