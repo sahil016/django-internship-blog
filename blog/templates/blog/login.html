@@ -1,0 +1,20 @@
+{% extends 'blog/base.html' %}
+{% block title %}Login - DevBlog{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-5">
+        <div class="glass-card p-4 p-md-5">
+            <h2 class="fw-bold mb-4 text-center">Welcome Back</h2>
+            <form method="POST">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-gradient w-100 py-2 mt-3">Login</button>
+            </form>
+            <p class="text-center text-muted small mt-3">
+                Don't have an account? <a href="{% url 'register' %}" class="text-primary fw-bold">Sign up</a>
+            </p>
+        </div>
+    </div>
+</div>
+{% endblock %}

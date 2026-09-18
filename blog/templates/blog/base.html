@@ -94,6 +94,69 @@
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
+
+        /* Hardware-accelerated buttery smooth transitions */
+        .glass-card, .btn, .form-control {
+            transform: translateZ(0);
+            backface-visibility: hidden;
+            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+        }
+
+        /* Global clean input styles for the entire app */
+    input[type="text"], 
+    input[type="email"],
+    input[type="password"],
+    input[type="username"],
+    textarea {
+        display: block !important;
+        width: 100% !important;
+        background-color: #f8fafc !important; 
+        border: 2px solid #e2e8f0 !important; 
+        border-radius: 12px !important;
+        padding: 12px 16px !important;
+        font-size: 1rem !important;
+        color: #1e293b !important;
+        transition: all 0.3s ease-in-out !important;
+        font-family: inherit !important;
+        margin-top: 6px !important; 
+        margin-bottom: 15px !important;
+    }
+
+    textarea {
+        min-height: 120px;
+        resize: vertical;
+    }
+
+    input[type="text"]:focus, 
+    input[type="email"]:focus,
+    input[type="password"]:focus,
+    input[type="username"]:focus,
+    textarea:focus {
+        outline: none !important;
+        background-color: #ffffff !important;
+        border-color: #6366f1 !important; 
+        box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.15) !important;
+    }
+
+    /* --- GLOBAL DARK MODE INPUT STYLES --- */
+    [data-bs-theme="dark"] input[type="text"], 
+    [data-bs-theme="dark"] input[type="email"],
+    [data-bs-theme="dark"] input[type="password"],
+    [data-bs-theme="dark"] input[type="username"],
+    [data-bs-theme="dark"] textarea {
+        background-color: #0f172a !important;
+        border-color: #334155 !important;
+        color: #f8fafc !important;
+    }
+
+    [data-bs-theme="dark"] input[type="text"]:focus, 
+    [data-bs-theme="dark"] input[type="email"]:focus,
+    [data-bs-theme="dark"] input[type="password"]:focus,
+    [data-bs-theme="dark"] input[type="username"]:focus,
+    [data-bs-theme="dark"] textarea:focus {
+        background-color: #0f172a !important;
+        border-color: #a855f7 !important;
+    }
     </style>
 </head>
 <body class="d-flex flex-column min-vh-100">
@@ -109,12 +172,41 @@
                     <i class="bi bi-moon-stars-fill text-dark fs-5"></i>
                 </button>
                 
-                <a href="{% url 'post_create' %}" class="btn btn-gradient px-4 py-2 shadow-sm">
-                    <i class="bi bi-pen-fill me-2"></i>Write
-                </a>
+                {% if user.is_authenticated %}
+                    <a href="{% url 'post_create' %}" class="btn btn-gradient px-3 py-2 shadow-sm me-2">
+                        <i class="bi bi-pen-fill me-1"></i>Write
+                    </a>
+                    <a href="{% url 'profile' %}" class="btn btn-outline-primary px-3 py-2 shadow-sm me-2">
+                        <i class="bi bi-person-fill me-1"></i>Profile
+                    </a>
+                    <form action="{% url 'logout' %}" method="post" class="d-inline">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-outline-danger px-3 py-2 shadow-sm">Logout</button>
+                    </form>
+                {% else %}
+                    <a href="{% url 'login' %}" class="btn btn-outline-primary px-3 py-2 shadow-sm me-2">Login</a>
+                    <a href="{% url 'register' %}" class="btn btn-gradient px-3 py-2 shadow-sm">Register</a>
+                {% endif %}
             </div>
         </div>
+        
+
+
     </nav>
+
+<!-- Toast / Message Notifications -->
+<div class="container mt-3" style="max-width: 850px;">
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }} alert-dismissible fade show glass-card border-0 shadow-sm py-3" role="alert">
+                <i class="bi bi-info-circle-fill me-2"></i>{{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        {% endfor %}
+    {% endif %}
+</div>
+
+
 
     <main class="container my-5 flex-grow-1 fade-in-up" style="max-width: 850px;">
         {% block content %}{% endblock %}
