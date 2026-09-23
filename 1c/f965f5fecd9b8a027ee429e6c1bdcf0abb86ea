@@ -1,0 +1,19 @@
+blog/views.py
+  h_0c252af99fc368 11,103-110
+  h_0c252af99fc368 28
+blog/urls.py
+  h_0c252af99fc368 4,13
+core/settings.py
+  h_0c252af99fc368 132-135
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "1cf965f5fecd9b8a027ee429e6c1bdcf0abb86ea",
+  "prompts": {},
+  "humans": {
+    "h_0c252af99fc368": {
+      "author": "sahil <sahildiwan8888@gmail.com>"
+    }
+  }
+}
