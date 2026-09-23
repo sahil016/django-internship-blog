@@ -8,6 +8,7 @@ from .forms import UserRegistrationForm, PostForm, CommentForm
 from django.contrib import messages
 from .forms import UserRegistrationForm, PostForm, CommentForm, UserProfileForm
 from django.shortcuts import get_object_or_404
+from django.contrib.auth.views import LoginView
 
 def post_list_view(request):
     posts = Post.objects.all().order_by('-created_at')
@@ -24,7 +25,7 @@ def post_detail_view(request, pk):
             new_comment.post = posts
             new_comment.save()
             return redirect('post_detail', pk=posts.pk)
-    else:
+    else:   
         comment_form = CommentForm()
     return render(request, 'blog/post_detail.html', {
         'post': posts, 
@@ -99,3 +100,11 @@ def post_edit_view(request, pk):
         form = PostForm(instance=post)
         
     return render(request, 'blog/post_form.html', {'form': form})
+
+
+class CustomLoginView(LoginView):
+    template_name = 'blog/login.html'
+    
+    def form_valid(self, form):
+        messages.success(self.request, f"Welcome back, {form.get_user().username}!")
+        return super().form_valid(form)
