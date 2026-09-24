@@ -9,10 +9,13 @@ from django.contrib import messages
 from .forms import UserRegistrationForm, PostForm, CommentForm, UserProfileForm
 from django.shortcuts import get_object_or_404
 from django.contrib.auth.views import LoginView
+from django.db.models import Count
 
 def post_list_view(request):
-    posts = Post.objects.all().order_by('-created_at')
+    # Optimized query: prefetch author info and annotate comment count in a single query
+    posts = Post.objects.select_related('author').annotate(comment_count=Count('comments') ).order_by('-created_at')
     return render(request, 'blog/post_list.html', {'posts': posts})
+
 
 def post_detail_view(request, pk):
     posts = get_object_or_404(Post, pk=pk)
