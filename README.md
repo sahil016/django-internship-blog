@@ -2,6 +2,8 @@
 
 A simple blog application built with Django to manage and display blog posts.
 
+**🚀 [Live Demo](https://devblog-app-vhtq.onrender.com)** — Check out the deployed app on Render
+
 ## What It Does
 
 This is a Django-based blog platform that allows you to create, read, and manage blog posts. It features a clean architecture with separate apps for blog functionality and core settings.
