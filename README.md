@@ -1,18 +1,26 @@
-# Django Internship Blog
+# DevBlog — Django Internship Blog
 
-A simple blog application built with Django to manage and display blog posts.
+![Python](https://img.shields.io/badge/Python-3.x-blue)
+![Django](https://img.shields.io/badge/Django-backend-092E20)
+![Status](https://img.shields.io/badge/status-live-brightgreen)
 
-**🚀 [Live Demo](https://devblog-app-vhtq.onrender.com)** — Check out the deployed app on Render
+A full-stack blog platform built with Django, featuring user authentication and post publishing. Built as a hands-on project during internship training.
 
-## What It Does
+**🚀 [Live Demo](https://devblog-app-vhtq.onrender.com)** — try it out, no setup required
 
-This is a Django-based blog platform that allows you to create, read, and manage blog posts. It features a clean architecture with separate apps for blog functionality and core settings.
+## Features
+
+- 📝 Create and publish blog posts
+- 🔐 User registration and login
+- 📰 Public feed of published articles
+- 🎨 Clean, minimal UI
 
 ## Tech Stack
 
 - **Python** 3.x
 - **Django** (backend framework)
 - **SQLite** (default database)
+- **Render** (deployment)
 
 ## Getting Started
 
@@ -64,9 +72,10 @@ django-internship-blog/
 
 ## Notes
 
-- This project uses SQLite by default (no separate database setup needed)
-- For production deployment, consider using PostgreSQL or MySQL
+- Uses SQLite by default — no separate database setup needed for local development
+- The [live demo](https://devblog-app-vhtq.onrender.com) is deployed on Render and may take a few seconds to spin up on first load (free-tier cold start)
+- For production, consider switching to PostgreSQL or MySQL
 
 ---
 
-Built as a learning project during internship training.
+⭐ If you found this project useful, consider giving it a star!
