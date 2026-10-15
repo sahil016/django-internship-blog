@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/6.1/ref/settings/
 """
 
+from multiprocessing.util import DEBUG
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -22,8 +23,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-v9iu665dansqd$n%kgxqi!ozxcz*(-$_crm#50+4_e@&9*l%2o'
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
 
 ALLOWED_HOSTS = ['devblog-app-vhtq.onrender.com', 'localhost', '127.0.0.1']
 
@@ -150,3 +149,12 @@ CACHES = {
         },
     }
 }
+
+if DEBUG:
+    try:
+        import debug_toolbar  # noqa: F401
+        INSTALLED_APPS += ['debug_toolbar']
+        MIDDLEWARE = ['debug_toolbar.middleware.DebugToolbarMiddleware'] + MIDDLEWARE
+        INTERNAL_IPS = ['127.0.0.1']
+    except ImportError:
+        pass
