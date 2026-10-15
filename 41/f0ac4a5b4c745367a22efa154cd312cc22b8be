@@ -1,0 +1,12 @@
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "41f0ac4a5b4c745367a22efa154cd312cc22b8be",
+  "prompts": {},
+  "humans": {
+    "h_0c252af99fc368": {
+      "author": "sahil <sahildiwan8888@gmail.com>"
+    }
+  }
+}
