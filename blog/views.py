@@ -15,7 +15,6 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import LoginView
 from django.contrib import messages
 from django.db.models import Count
-from django.views.decorators.cache import cache_page
 from django.core.cache import cache
 
 from .models import Post
@@ -26,7 +25,6 @@ from .forms import PostForm, CommentForm, UserRegistrationForm, UserProfileForm
 # POST LIST VIEWS
 # =====================================================================
 
-@cache_page(60 * 15)
 def post_list_view(request):
     posts = (Post.objects
              .select_related('author')
