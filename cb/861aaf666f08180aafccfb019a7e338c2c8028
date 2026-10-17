@@ -1,0 +1,15 @@
+core/settings.py
+  h_0c252af99fc368 13,15,18-19
+  h_0c252af99fc368 14
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "cb861aaf666f08180aafccfb019a7e338c2c8028",
+  "prompts": {},
+  "humans": {
+    "h_0c252af99fc368": {
+      "author": "sahil <sahildiwan8888@gmail.com>"
+    }
+  }
+}
